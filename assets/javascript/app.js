@@ -88,8 +88,8 @@ $( document ).ready(function(){
 		done();
 		reset();
 		alert("Let's see how you did!");
-		$('#rightGuesses').html('<p>' + 'Correct Guesses: ' + correctGuesses +'<p>');
-		$('#wrongGuesses').html('<p>' + 'Incorrect Guesses: ' + incorrectGuesses + '<p>');
+		//$('#rightGuesses').html('<p>' + 'Correct Guesses: ' + correctGuesses +'<p>');
+		//$('#wrongGuesses').html('<p>' + 'Incorrect Guesses: ' + incorrectGuesses + '<p>');
 	})
 
 
@@ -102,11 +102,9 @@ $( document ).ready(function(){
 		done();
 		reset();
 		alert("Let's see how you did!");
-		$('#rightGuesses').html('<p>' + 'Correct Guesses: ' + correctGuesses +'<p>');
-		$('#wrongGuesses').html('<p>' + 'Incorrect Guesses: ' + incorrectGuesses + '<p>');
+		//$('#rightGuesses').html('<p>' + 'Correct Guesses: ' + correctGuesses +'<p>');
+		//$('#wrongGuesses').html('<p>' + 'Incorrect Guesses: ' + incorrectGuesses + '<p>');
 	})
-
-
 
 
 
@@ -118,7 +116,9 @@ $( document ).ready(function(){
 
     function reset()
     {
-    	time = 11;
+
+		$('#game-timer').empty();
+    	time = 6;
     }
 
 
@@ -143,6 +143,16 @@ $( document ).ready(function(){
 
 	//adding click event to start button to begin timer
 	$("#play").on ("click", run);
+
+	$('#done').click(function()
+		{
+			$('#main').hide();
+			done();
+			reset();
+			$('#rightGuesses').html('<p>' + 'Correct Guesses: ' + correctGuesses +'<p>');
+			$('#wrongGuesses').html('<p>' + 'Incorrect Guesses: ' + incorrectGuesses + '<p>');
+		});
+
 
 
 })

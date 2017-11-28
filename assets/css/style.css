@@ -4,15 +4,16 @@ body{
 
 .jumbotron{
 	text-align: center;
-	background-color: #33c531;
+	background-color: #6fd26d61;
 }
 
 .jumbotron h1{
 	color: #861172; 
 }
 
+.container,
 .panel-default{
-	background-color: #33c531;
+	background-color: #6fd26d61;
 }
 
 p{
@@ -27,7 +28,8 @@ p{
 	margin-bottom: 20px;
 }
 
-.answer-button{
+.answer-button, 
+#done{
 	margin-left: 525px;
 	margin-bottom: 20px;
 
