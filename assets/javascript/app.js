@@ -3,10 +3,11 @@ $( document ).ready(function(){
 
 	// setting up variables
 
-	var time = 11;
+	var time = 6;
 	var timer;
 	var correctGuesses = 0;
 	var incorrectGuesses = 0;
+	//var guessNum = 0;
 	//var selectedAnswer;
 /*	var q1 = 
 	{
@@ -50,6 +51,8 @@ $( document ).ready(function(){
 	{
 		correctGuesses++;
 		console.log(correctGuesses);
+		//guessNum++;
+
 	})
 
 
@@ -57,6 +60,7 @@ $( document ).ready(function(){
 	{
 		incorrectGuesses++;
 		console.log(incorrectGuesses);
+		//guessNum++;
 	})
 
 
@@ -64,6 +68,7 @@ $( document ).ready(function(){
 	{
 		incorrectGuesses++;
 		console.log(incorrectGuesses);
+		//guessNum++;
 	})
 
 
@@ -71,6 +76,7 @@ $( document ).ready(function(){
 	{
 		correctGuesses++;
 		console.log(correctGuesses);
+		//guessNum++;
 	})
 
 
@@ -78,6 +84,12 @@ $( document ).ready(function(){
 	{
 		correctGuesses++;
 		console.log(correctGuesses);
+		//guessNum++;
+		done();
+		reset();
+		alert("Let's see how you did!");
+		$('#rightGuesses').html('<p>' + 'Correct Guesses: ' + correctGuesses +'<p>');
+		$('#wrongGuesses').html('<p>' + 'Incorrect Guesses: ' + incorrectGuesses + '<p>');
 	})
 
 
@@ -86,6 +98,12 @@ $( document ).ready(function(){
 	{
 		incorrectGuesses++;
 		console.log(incorrectGuesses);
+		//guessNum++;
+		done();
+		reset();
+		alert("Let's see how you did!");
+		$('#rightGuesses').html('<p>' + 'Correct Guesses: ' + correctGuesses +'<p>');
+		$('#wrongGuesses').html('<p>' + 'Incorrect Guesses: ' + incorrectGuesses + '<p>');
 	})
 
 
@@ -108,8 +126,10 @@ $( document ).ready(function(){
 	{
 		time--;
 		$('#game-timer').html('<p>' + time + '</p>');
+
 		if(time === 0)
 		{
+			alert('Times Up!')
 			done();
 			reset();
 		}
@@ -121,10 +141,8 @@ $( document ).ready(function(){
 		timer = setInterval(countdown, 1000);
 	}
 
-
 	//adding click event to start button to begin timer
 	$("#play").on ("click", run);
-
 
 
 })
