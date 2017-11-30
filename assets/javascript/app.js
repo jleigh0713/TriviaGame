@@ -2,7 +2,7 @@
 $( document ).ready(function(){
 
 	// setting up variables
-	var time = 9;
+	var time = 11;
 	var timer;
 	var correctGuesses = 0;
 	var incorrectGuesses = 0;
@@ -78,7 +78,7 @@ $( document ).ready(function(){
     function reset()
     {
 		$('#game-timer').empty();
-    	time = 9;
+    	time = 11;
     }
 
     //defining function to show stats pages when hitting the done button or when the timer has run out
@@ -99,7 +99,7 @@ $( document ).ready(function(){
 		time--;
 		$('#game-timer').html('<p>' + time + '</p>');
 
-		if(time === 0)
+		if(time === -1)
 		{
 			alert('Times Up!')
 			done();
