@@ -2,7 +2,6 @@
 $( document ).ready(function(){
 
 	// setting up variables
-
 	var time = 9;
 	var timer;
 	var correctGuesses = 0;
@@ -14,134 +13,87 @@ $( document ).ready(function(){
 	var q3rightGuess = 0;
 	var q3wrongGuess = 0;
 	var skippedGuesses = 0;
-	//var guessNum = 0;
-	//var selectedAnswer;
-	/*var q1 = 
-	{
-		question: "There are 50 states in the United States?",
-		options: ["True", "False"],
-		correctAnswer1: "True",
-	};
-	var q2 =
-	{
-		question: "The Buffalo Bills went to the Superbowl 4 years in a row and won twice",
-		options: ["True", "False"],
-		correctAnswer2: "False",
-	};
-	var q3 =
-	{
-		question: "You should try to follow the DIY (Don't repeat yourself) principle when coding",
-		options: ["True", "False"],
-		correctAnswer3: "True",
-	};
 
-	}*/
+	//hiding the stats section
+	$('#stats').hide();
 
+	/*on click event for question 2 true button,collect count/value for the correct one and if chosen it over rides what may have been previosuly chosen
+	as an answer for the same question*/
 	$("#q1true").on("click", function()
 	{
-		//correctGuesses++;
 		q1rightGuess = 1;
 		q1wrongGuess = 0;
-		/*if (correctGuesses >= 2) 
-		{
-			correctGuesses = 1;
-			alert("You already made your selection. Please continue to next question.");
-		}*/
 	})
 
-	/*$("#q1true, #q2false, #q3true").on("click", function()
-	{
-		correctGuesses++;
-		if(correctGuesses >= 2)
-		{
-			alert("You have already selected your answer.  Please continue onto the next question.");
-			correctGuesses
-		}
-
-	})*/
-
+	/*on click event for question 1 false button,collect count/value for the correct one and if chosen it over rides what may have been previosuly chosen
+	as an answer for the same question*/
 	$("#q1false").on("click", function()
 	{
 		q1rightGuess = 0;
 		q1wrongGuess = 1;
-		
 	})
 
-	/*$("#q1false, #q2true, #q3false").on("click", function()
-	{
-		incorrectGuesses++;
-	})*/
-
-
+	/*on click event for question 2 true button,collect count/value for the correct one and if chosen it over rides what may have been previosuly chosen
+	as an answer for the same question*/
 	$("#q2true").on("click", function()
 	{
 		q2rightGuess = 0;
 		q2wrongGuess = 1;
 	})
 
-
+	/*on click event for question 2 false button,collect count/value for the correct one and if chosen it over rides what may have been previosuly chosen
+	as an answer for the same question*/
 	$("#q2false").on("click", function()
 	{
 		q2rightGuess = 1;
 		q2wrongGuess = 0;
 	})
 
-
+	/*on click event for question 3 true button,collect count/value for the correct one and if chosen it over rides what may have been previosuly chosen
+	as an answer for the same question*/
 	$("#q3true").on("click", function()
 	{
 		q3rightGuess = 1;
 		q3wrongGuess = 0;
-		/*done();
-		reset();
-		alert("Let's see how you did!");
-		$('#rightGuesses').html('<p>' + 'Correct Guesses: ' + correctGuesses +'<p>');
-		$('#wrongGuesses').html('<p>' + 'Incorrect Guesses: ' + incorrectGuesses + '<p>');*/
 	})
 
-
-
+	/*on click event for question 3 false button, collect count/value for the correct one and if chosen it over rides what may have been previosuly chosen
+	as an answer for the same question*/
 	$("#q3false").on("click", function()
 	{
 		q3rightGuess = 0;
 		q3wrongGuess = 1;
-		/*done();
-		reset();
-		alert("Let's see how you did!");
-		$('#rightGuesses').html('<p>' + 'Correct Guesses: ' + correctGuesses +'<p>');
-		$('#wrongGuesses').html('<p>' + 'Incorrect Guesses: ' + incorrectGuesses + '<p>');*/
 	})
 
-   /*function guessesSkipped()
-    {
-    	if(correctGuesses > incorrectGuesses)
-      	{
-      		skippedGuesses = correctGuesses - incorrectGuesses;
-      	}
-      	else
-      	{
-      		skippedGuesses = incorrectGuesses - correctGuesses;
-     	}
-    }*/
-
-
+	//defining function for when the game is done
 	function done() 
 	{
       clearInterval(timer);
       correctGuesses = q1rightGuess + q2rightGuess + q3rightGuess;
       incorrectGuesses = q1wrongGuess + q2wrongGuess + q3wrongGuess;
-      //guessesSkipped();
       skippedGuesses = 3 - (correctGuesses + incorrectGuesses);
     }
 
-
+    //defining function in order to reset the timer
     function reset()
     {
-
 		$('#game-timer').empty();
     	time = 9;
     }
 
+    //defining function to show stats pages when hitting the done button or when the timer has run out
+	function endGame()
+	{
+		done();
+		reset();
+		$('#stats').show();
+		$('#main').hide();
+		$('#rightGuesses').html('<p>' + 'Correct Guesses: ' + correctGuesses +'<p>');
+		$('#wrongGuesses').html('<p>' + 'Incorrect Guesses: ' + incorrectGuesses + '<p>');
+		$('#skippedGuesses').html('<p>' + 'Skipped Guesses: ' + skippedGuesses + '<p>');
+	}
 
+	// defining function to display timer and what happens as it countdowns and gets to zero
 	function countdown()
 	{
 		time--;
@@ -152,26 +104,27 @@ $( document ).ready(function(){
 			alert('Times Up!')
 			done();
 			reset();
+			endGame();
 		}
 	}
 
-
+	//defining function to set timer 
 	function run()
 	{
 		timer = setInterval(countdown, 1000);
 	}
 
-	//adding click event to start button to begin timer
-	$("#play").on ("click", run);
+	//adding click event to Start button to begin timer
+	$("#play").on("click", run);
 
-	$('#done').click(function()
-		{
-			$('#main').hide();
-			done();
-			reset();
-			$('#rightGuesses').html('<p>' + 'Correct Guesses: ' + correctGuesses +'<p>');
-			$('#wrongGuesses').html('<p>' + 'Incorrect Guesses: ' + incorrectGuesses + '<p>');
-			$('#skippedGuesses').html('<p>' + 'Missed Guesses: ' + skippedGuesses + '<p>');
-		});
+	//adding click event to Done button to end timer, reset game and to show the Stats section
+	$('#done').on("click", endGame);
+
+	//adding click event to the Play Again button
+	$("#play-again").on("click", function()
+	{
+		location.reload();
+	})
+
 })
 
